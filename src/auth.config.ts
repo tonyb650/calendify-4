@@ -6,6 +6,10 @@ import { LoginSchema } from "./schemas"
 import bcryptjs from "bcryptjs"
 import prisma from "../lib/prisma"
 
+// This is a configuration object to be used everywhere.
+// This does not include the database adapter
+// This is only an object, not a full Auth.js instance
+
 export default { providers: [
   GitHub({
     clientId : process.env.GITHUB_CLIENT_ID,

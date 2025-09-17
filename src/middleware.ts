@@ -10,8 +10,18 @@ import authConfig from "./auth.config"
 
 export const runtime = "nodejs"
 
-export const {auth: middleware} = NextAuth(authConfig)
+// This is the instance of Auth.js that DOES NOT include the
+// prisma adapter or the 'jwt' session strategy, only what's in the config object
+// from 'auth.config.ts'
 
+const {auth: middleware} = NextAuth(authConfig)
+
+export default middleware((req) => {
+  const {nextUrl} = req
+  console.log("***MIDDLEWARE***   nextUrl = "+ nextUrl)
+  console.log("req.auth" + req.auth)
+  return null
+})
 // Any path that is NOT matched will invoke the middleware above
 export const config = {
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"], // <-- This matcher comes from Clerk, presenter says it is best matcher
