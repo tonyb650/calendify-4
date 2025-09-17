@@ -8,6 +8,8 @@ import authConfig from "./auth.config"
 // 	// do stuff here
 // })
 
+export const runtime = "nodejs"
+
 export const {auth: middleware} = NextAuth(authConfig)
 
 // Any path that is NOT matched will invoke the middleware above
