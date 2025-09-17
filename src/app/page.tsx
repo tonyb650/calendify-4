@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export default function Home() {
 
-    async function createTodo(formData: FormData) { 
+  async function createTodo(formData: FormData) { 
     "use server"
     // This code is being called only on the server
     console.log(formData)               // Will log form data on the server console
@@ -28,6 +28,7 @@ export default function Home() {
           <Button >Sign In</Button>
         </LoginButton>
 
+
         <form
           action={createTodo}         
           >                               
@@ -36,8 +37,8 @@ export default function Home() {
           <input type="text" name="title" id="title"/>
           <button>Submit</button>
         </form>
-
       </div>
     </main>
   );
 }
+
