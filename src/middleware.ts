@@ -6,6 +6,7 @@ export default auth((req) => { // Here's the magic. In this middleware, req.auth
 	// do stuff here
 })
 
+// Any path that is NOT matched will invoke the middleware above
 export const config = {
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"], // <-- This matcher comes from Clerk, presenter says it is best matcher
 }
