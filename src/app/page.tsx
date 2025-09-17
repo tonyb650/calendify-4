@@ -8,7 +8,7 @@ export default function Home() {
     console.log(formData)               // Will log form data on the server console
     console.log(formData.get("title")) 
     // ... await async database 'create' action here
-    await prisma.verificationToken.create({data:{id: "4", expires: new Date(), token: "3", email: "hey@hey.com"}})
+    await prisma.verificationToken.create({data:{id: "5", expires: new Date(), token: "3", email: "hey@hey.com"}})
   }
   
 	return (
