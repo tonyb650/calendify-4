@@ -42,4 +42,4 @@ const edgeConfig: NextAuthConfig = {
   ...authConfig
 }
 
-export const { handlers: { GET, POST}, auth} = NextAuth(edgeConfig)
+export const { handlers: { GET, POST}, auth, signIn, signOut} = NextAuth(edgeConfig)
