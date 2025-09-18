@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 import authConfig from "./auth.config"
 import { apiAuthPrefix, authRoutes, DEFAULT_LOGIN_REDIRECT, publicRoutes } from "./routes"
 
-// export const runtime = "nodejs"
+//export const runtime = "nodejs" // <-- currently deployment fails without this
 
 // This is the instance of Auth.js that DOES NOT include the
 // prisma adapter or the 'jwt' session strategy, only what's in the config object
@@ -43,4 +43,5 @@ export default middleware((req) => {
 // This will match things like favicon, everything else goes through the middleware
 export const config = {
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"], // <-- This matcher comes from Clerk, presenter says it is best matcher
+  runtime: 'nodejs'
 }
