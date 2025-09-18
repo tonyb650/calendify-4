@@ -1,9 +1,17 @@
-import React from 'react'
+import { getEvents } from "@/db/events";
+import { Suspense } from "react";
+import CalendarView from "./_components/CalendarView";
 
-const CalendarPage = () => {
+export default function Home() {
   return (
-    <div>CalendarPage</div>
-  )
+    <Suspense fallback={<>Loading...</>}>
+      <CalendarPage />
+    </Suspense>
+  );
 }
 
-export default CalendarPage
+async function CalendarPage() {
+  const events = await getEvents()
+
+  return <CalendarView events={events} />;
+}
