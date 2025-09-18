@@ -7,7 +7,7 @@ import { signIn } from "next-auth/react";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 
 const Social = () => {
-  const handleClick = (provider: "google") => {
+  const handleClick = (provider: "google" | "github") => {
     signIn(provider, {
       redirectTo: DEFAULT_LOGIN_REDIRECT 
     })
@@ -26,7 +26,7 @@ const Social = () => {
         size="lg"
         className="flex-auto"
         variant={"outline"}
-        onClick={() => handleClick("google")}
+        onClick={() => handleClick("github")}
       >
         <FaGithub className="h-5 w-5" />
       </Button>

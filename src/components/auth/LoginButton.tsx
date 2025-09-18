@@ -11,7 +11,7 @@ type LoginButtonProps = {
 // TODO accessibility? maybe 'asChild' helps with that?
 const LoginButton = ({mode = "redirect", children, asChild}: PropsWithChildren<LoginButtonProps>) => {
 
-  console.log(asChild)
+  console.log("asChild in LoginButton" + asChild)
   
   const router = useRouter()
   
