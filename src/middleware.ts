@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 import authConfig from "./auth.config"
 import { apiAuthPrefix, authRoutes, DEFAULT_LOGIN_REDIRECT, publicRoutes } from "./routes"
 
-export const runtime = "nodejs"
+// export const runtime = "nodejs"
 
 // This is the instance of Auth.js that DOES NOT include the
 // prisma adapter or the 'jwt' session strategy, only what's in the config object
