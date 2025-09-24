@@ -3,10 +3,11 @@
 import CalendifyLogo from "@/components/CalendifyLogo"
 import UserButton from "@/components/user/UserButton"
 import AddEventButton from "./AddEventButton"
+import { cn } from "@/lib/utils"
 
 const Navbar = () => {
   return (
-    <div className="bg-blue-600 text-white shadow-md sticky top-0 z-10">
+    <div className={cn("text-white shadow-md sticky top-0 z-10", "bg-radial-[at_25%_00%] from-sky-600 to-blue-800")}>
       <nav className="flex justify-between items-center mb-5 px-5 py-3 max-w-7xl mx-auto">
         <CalendifyLogo/>
         <div className="flex items-center gap-x-3">
