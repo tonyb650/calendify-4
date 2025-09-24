@@ -30,6 +30,8 @@ export async function updateUser({
 
 export const getUserByEmail = async (email: string) => {
   try {
+    console.log("email in getUserByEmail")
+    console.log(email)
     const user = await prisma.user.findFirst({where:{email}})
     return user
   } catch (error) {
