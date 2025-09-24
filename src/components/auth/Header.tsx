@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { Poppins } from "next/font/google";
 
 type HeaderProps = {
   label: string;

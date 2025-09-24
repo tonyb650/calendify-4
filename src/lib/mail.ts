@@ -7,6 +7,7 @@ export const sendVerificationEmail = async (
   token: string
 ) => {
   const emailVerificationLink = `${process.env.AUTH_URL}/auth/new-verification?token=${token}`
+
   await resend.emails.send({
     from: "noreply@calendify.dev",
     to: email,
@@ -14,5 +15,4 @@ export const sendVerificationEmail = async (
     html: `<p><a href="${emailVerificationLink}">Click here to confirm email.</a></p>`,
     text: `Follow this link to confirm your email address: ${emailVerificationLink}`,
   })
-
 }
