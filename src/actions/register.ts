@@ -1,10 +1,12 @@
 'use server'
 
-import { RegisterSchema } from "@/schemas"
 import z from "zod"
 import bcryptjs from 'bcryptjs'
+import { RegisterSchema } from "@/schemas"
 import { getUserByEmail } from "@/db/users"
 import prisma from "../../lib/prisma"
+import { generateVerificationToken } from "@/lib/tokens"
+import { sendVerificationEmail } from "@/lib/mail"
 
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
@@ -30,7 +32,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     }
   })
 
-  // TODO: send verification token email
-  
-  return { success: "User Created!"}
+  const verificationToken = await generateVerificationToken(email)
+  await sendVerificationEmail(verificationToken.email, verificationToken.token)
+  return {success: "Confirmation Email Sent!"}
 }

@@ -22,6 +22,19 @@ const edgeConfig: NextAuthConfig = {
     }
   },
   callbacks: {
+    async signIn({user, account}) {
+      if (account?.provider !== "credentials") {
+        return true
+      }
+      const existingUser = await getUserById(user.id)
+      // TODO only return false if Grace Period is expired
+      if (!existingUser?.emailVerified) {
+        return false
+      }
+      // TODO Add 2FA check
+
+      return true
+    },
     async jwt({token}) {
       const existingUser = await getUserById(token.sub)
       if (!existingUser) return token
@@ -36,6 +49,7 @@ const edgeConfig: NextAuthConfig = {
       if (token.earliest ) session.user.latest = token.latest as number
       return session
     },
+
   },
   adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt"},

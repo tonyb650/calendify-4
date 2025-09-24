@@ -121,6 +121,7 @@ export default function EventForm ({event, defaultDate, onSuccess}: EventFormPro
           </FormGroup>
         </>
       }
+      {/* Use ShadCN button? */}
       <button className="btn">{isPending ? "Submitting" : "Submit"}</button>
     </form>
   );

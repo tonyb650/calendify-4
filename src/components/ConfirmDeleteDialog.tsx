@@ -33,6 +33,7 @@ export function ConfirmDeleteDialog({event, onSuccess}: {event: Event, onSuccess
             <p>Are you sure you want to delete this event:</p>
             <p className="text-sm font-semibold">{event.title}</p>
             <form action={formAction} className="flex justify-end gap-4">
+              {/* Use ShadCN Buttons? */}
               <button type="button" className="btn" onClick={() => setConfirmIsOpen(false)}>
                 Cancel
               </button>
