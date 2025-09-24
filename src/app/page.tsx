@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <main className="flex h-full flex-col items-center justify-center bg-radial-[at_50%_00%] from-sky-400 to-blue-800">
       <div className="space-y-6 text-center">
-        <h1 className={cn("text-white text-6xl drop-shadow-md")}>
+        <h1 className={cn("text-white text-7xl drop-shadow-md font-zain")}>
           📆 Calendify
         </h1>
         <p className="text-white text-lg">
