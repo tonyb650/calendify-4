@@ -8,11 +8,6 @@ import { FaSignOutAlt } from "react-icons/fa"
 import { FaGear } from "react-icons/fa6"
 import UserAvatar from "./UserAvatar"
 import UserSettingsModal from "./UserSettingsModal"
-import UserSettingsForm from "./UserSettingsForm"
-
-
-// ! Watch this video to figure out Dialog within Dropdown
-// https://www.youtube.com/watch?v=JwNf4ujqsFU
 
 const UserButton = () => {
   const user = useCurrentUser()
@@ -20,10 +15,6 @@ const UserButton = () => {
 
   return (
     <>
-      <UserSettingsModal isOpen={isSettingsOpen} setIsOpen={setIsSettingsOpen}>
-        <UserSettingsForm onClose={() => setIsSettingsOpen(false)} /> 
-      </UserSettingsModal>
-
       <DropdownMenu>
         <DropdownMenuTrigger>
           <UserAvatar user={user}/>
@@ -41,6 +32,8 @@ const UserButton = () => {
           </LogoutButton>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      <UserSettingsModal isOpen={isSettingsOpen} setIsOpen={setIsSettingsOpen}/>
     </>
   )
 }

@@ -19,7 +19,7 @@ export default function AddEventButton() {
       >
         <RiAddLine className="w-5 h-5 transition delay-50 duration-300 hover:rotate-90" />
       </button>
-      <Modal title="New Event" isOpen={isOpen} onClose={onClose}>
+      <Modal title="New Event" isOpen={isOpen} setIsOpen={setIsOpen}>
         <EventForm defaultDate={new Date()} onSuccess={onClose} />
       </Modal>
     </>

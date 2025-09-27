@@ -11,7 +11,7 @@ import timeGridPlugin from "@fullcalendar/timegrid"
 import { useEffect, useState } from "react"
 
 import { updatePartTimes } from "@/actions/events"
-import { ConfirmDeleteDialog } from "@/components/ConfirmDeleteDialog"
+import { DeleteEventButton } from "@/components/DeleteEventButton"
 import Modal from "@/components/Modal"
 import { getNextHourStart } from "@/lib/dateUtils"
 import EventForm from "../../_components/EventForm"
@@ -112,11 +112,11 @@ export default function Calendar({events}: {events: EventWithParts[]}) {
         eventClick={handleEventClick}
         dateClick={handleDateClick}
         eventResize={handleResizeOrDrop}
-        // eventDidMount={handleEventDidMount}
         eventDrop={handleResizeOrDrop}
         viewDidMount={handleViewDidMount}
-
+        
         /* 
+          eventDidMount={handleEventDidMount}
           eventAdd={function(){}}
           eventChange={function(){}}
           eventRemove={function(){}}
@@ -124,27 +124,46 @@ export default function Calendar({events}: {events: EventWithParts[]}) {
       />
       {selectedEvent && (
         <Modal
-          title="Update Event"
+          title={
+            <div className="flex justify-between">
+              Update Event
+              <DeleteEventButton
+                event={selectedEvent}
+                onSuccess={() => setSelectedEvent(undefined)}
+              />
+            </div>
+          }
           isOpen={!!selectedEvent}
-          onClose={() => {
-            setSelectedEvent(undefined);
+          setIsOpen={() => {
+            if (selectedEvent !== undefined) {
+              setSelectedEvent(undefined);
+            }
           }}
-          headerDetails={<ConfirmDeleteDialog event={selectedEvent} onSuccess={() => setSelectedEvent(undefined)}/>}
         >
-          <EventForm event={selectedEvent} onSuccess={() => {
-            setSelectedEvent(undefined);
-          }}/>
+          <EventForm
+            event={selectedEvent}
+            onSuccess={() => {
+              setSelectedEvent(undefined);
+            }}
+          />
         </Modal>
       )}
       {selectedDate && (
         <Modal
           title="New Event"
           isOpen={!!selectedDate}
-          onClose={() => {
-            setSelectedDate(undefined)
+          setIsOpen={() => {
+            if (selectedDate !== undefined) {
+              setSelectedDate(undefined);
+            }
           }}
         >
-          <EventForm defaultDate={selectedDate} onSuccess={() => {setSelectedDate(undefined)}} />
+          <EventForm
+            defaultDate={selectedDate}
+            onSuccess={() => {
+              setSelectedDate(undefined);
+            }}
+          />
         </Modal>
       )}
     </>
