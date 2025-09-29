@@ -16,10 +16,10 @@ const UserButton = () => {
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger>
+        <DropdownMenuTrigger className="hover:scale-110 transition-all duration-200 cursor-pointer">
           <UserAvatar user={user}/>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-40 t" align="end">
+        <DropdownMenuContent className="w-40" align="end">
           <DropdownMenuItem onSelect={() => setIsSettingsOpen(true)}>
             <FaGear className="h-4 w-4 mr-2"/>
             Settings
