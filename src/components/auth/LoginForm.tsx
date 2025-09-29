@@ -13,11 +13,15 @@ import FormError from "@/components/FormError";
 import FormSuccess from "@/components/FormSuccess";
 import CardWrapper from "@/components/auth/CardWrapper";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 export const LoginForm = () => {
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | undefined>()
   const [success, setSuccess] = useState<string | undefined>()
+  const searchParams = useSearchParams()
+
+  const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "Email already in use with a different provider" : ""
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -80,7 +84,7 @@ export const LoginForm = () => {
               )}
             />
           </div>
-          <FormError message={error}/>
+          <FormError message={urlError || error}/>
           <FormSuccess message={success}/>
           <Button disabled={isPending} type="submit" className="w-full">
               Login
