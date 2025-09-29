@@ -15,3 +15,7 @@ export const RegisterSchema = z.object({
   earliest: z.number().min(0).max(47).default(DEFAULT_EARLIEST_TIME).optional(),
   latest: z.number().min(0).max(47).default(DEFAULT_LATEST_TIME).optional()
 })
+
+export const ResetSchema = z.object({
+  email: z.email({message: "Email is required"}),
+})

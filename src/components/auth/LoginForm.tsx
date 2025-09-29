@@ -12,6 +12,7 @@ import { login } from "@/actions/login";
 import FormError from "@/components/FormError";
 import FormSuccess from "@/components/FormSuccess";
 import CardWrapper from "@/components/auth/CardWrapper";
+import Link from "next/link";
 
 export const LoginForm = () => {
   const [isPending, startTransition] = useTransition()
@@ -69,6 +70,11 @@ export const LoginForm = () => {
                   <FormControl>
                     <Input disabled={isPending} {...field} placeholder="********" type="password"/>
                   </FormControl>
+                  <Button asChild size="sm" variant="link" className="px-0 font-normal">
+                    <Link href={"/auth/reset"}>
+                      Forgot Password?
+                    </Link>
+                  </Button>
                   <FormMessage/>
                 </FormItem>
               )}

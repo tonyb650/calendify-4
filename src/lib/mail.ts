@@ -18,3 +18,18 @@ export const sendVerificationEmail = async (
     text: `Follow this link to confirm your email address: ${emailVerificationLink}`,
   })
 }
+
+export const sendPasswordResetEmail = async (
+  email: string,
+  token: string
+) => {
+  const passwordResetLink = `${process.env.AUTH_URL}/auth/new-password?token=${token}`
+
+  await resend.emails.send({
+    from: "noreply@calendify.dev",
+    to: email,
+    subject: "Calendify: Reset your password",
+    html: `<p><a href="${passwordResetLink}">Click here to confirm reset your password.</a></p>`,
+    text: `Follow this link to reset your password: ${passwordResetLink}`,
+  })
+}
