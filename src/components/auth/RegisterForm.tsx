@@ -43,6 +43,7 @@ const RegisterForm = () => {
       backButtonLabel="Already have an account?"
       backButtonHref="/auth/login"
       showSocial
+      showGuestLogin
     >
 
       <Form {...form}>

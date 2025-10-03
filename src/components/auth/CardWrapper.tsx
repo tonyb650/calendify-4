@@ -10,19 +10,22 @@ import {
 import Header from "@/components/auth/Header";
 import Social from "@/components/auth/Social";
 import BackButton from "./BackButton";
+import GuestLogin from "./GuestLogin";
 
 type CardWrapperProps = {
   headerLabel: string;
   backButtonLabel: string;
   backButtonHref: string;
   showSocial?: boolean;
+  showGuestLogin?: boolean
 };
 const CardWrapper = ({
   children,
   headerLabel,
   backButtonLabel,
   backButtonHref,
-  showSocial
+  showSocial,
+  showGuestLogin
 }: PropsWithChildren<CardWrapperProps>) => {
   return (
     <Card className="w-[400px] shadow-md">
@@ -33,6 +36,12 @@ const CardWrapper = ({
       {showSocial && 
         <CardFooter>
           <Social/>
+        </CardFooter>
+        
+      }
+      {showGuestLogin && 
+        <CardFooter>
+          <GuestLogin/>
         </CardFooter>
         
       }
