@@ -24,10 +24,10 @@ const UserSettingsModal = ({
         </div>
       }
       description={
-        <div className="text-slate-700">
+        <span className="text-slate-700">
           <span className="font-bold">{user?.name} ({user?.earliest} {user?.latest})</span><br />
           <span className="">{user?.email}</span><br />
-        </div>
+        </span>
       }
       isOpen={isOpen}
       setIsOpen={setIsOpen}

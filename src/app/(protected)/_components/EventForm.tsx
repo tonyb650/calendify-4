@@ -6,6 +6,7 @@ import combinedDuration from "@/helpers/combinedDuration";
 import { useActionState, useEffect, useState } from "react";
 import { formatDate, formatTime, getEndTime, getNextHourStart } from "@/lib/dateUtils";
 import { FormGroup } from "@/components/FormGroup";
+import { Button } from "@/components/ui/button";
 
 //! move to user preferences
 const USER_PREFERENCE_DEFAULT_APPOINTMENT_DURATION = 30; // default to 30 minutes if no duration is provided
@@ -121,8 +122,7 @@ export default function EventForm ({event, defaultDate, onSuccess}: EventFormPro
           </FormGroup>
         </>
       }
-      {/* Use ShadCN button? */}
-      <button className="btn">{isPending ? "Submitting" : "Submit"}</button>
+      <Button variant="default">{isPending ? "Submitting" : "Submit"}</Button>
     </form>
   );
 }
