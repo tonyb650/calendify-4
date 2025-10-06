@@ -4,6 +4,7 @@ import CalendifyLogo from "@/components/CalendifyLogo"
 import UserButton from "@/components/user/UserButton"
 import AddEventButton from "./AddEventButton"
 import { cn } from "@/lib/utils"
+import GuestModeWarning from "./GuestModeWarning"
 
 const Navbar = () => {
   return (
@@ -11,6 +12,7 @@ const Navbar = () => {
       <nav className="flex justify-between items-center mb-5 px-5 py-3 max-w-7xl mx-auto">
         <CalendifyLogo/>
         <div className="flex items-center gap-x-3">
+          <GuestModeWarning/>
           <AddEventButton/>
           <UserButton/>
         </div>

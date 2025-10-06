@@ -13,5 +13,9 @@ export default function Home() {
 async function CalendarPage() {
   const events = await getEvents()
 
-  return <CalendarView events={events} />;
+  return (
+    <div className="mx-2 md:mx-3">
+      <CalendarView events={events} />
+    </div>
+  ) 
 }

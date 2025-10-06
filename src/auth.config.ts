@@ -22,12 +22,17 @@ export default { providers: [
   Credentials({
     async authorize(credentials){
       const validatedFields = LoginSchema.safeParse(credentials)
+      
       if(validatedFields.success) {
-        const {email, password} = validatedFields.data
-        const user = await prisma.user.findUnique({where:{email}}) // TODO Should this be in a try/catch ?
-        if (!user || !user.password) return null
-        const passwordsMatch = await bcryptjs.compare(password, user.password)
-        if (passwordsMatch) return user
+        const {email, password, guestId} = validatedFields.data
+        if (guestId) {
+          return await prisma.user.findUnique({where:{id: guestId}})
+        } else if (email && password) {
+          const user = await prisma.user.findUnique({where:{email}}) 
+          if (!user || !user.password) return null
+          const passwordsMatch = await bcryptjs.compare(password, user.password)
+          if (passwordsMatch) return user
+        }
       }
       return null
     }

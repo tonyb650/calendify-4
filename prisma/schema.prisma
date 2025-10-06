@@ -26,6 +26,7 @@ model Event {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   parts         Part[]
+  // isGuest       Boolean? @default(false) <-- likely it's not needed
 
   @@index([userId])
 }
@@ -40,6 +41,7 @@ model Part {
 
 model User {
   id            String          @id @default(cuid())
+  isGuest       Boolean?        @default(false)
   name          String?
   username      String?         @unique
   email         String?         @unique
@@ -51,8 +53,9 @@ model User {
   accounts      Account[]
   sessions      Session[]
   events        Event[]
+
   // Optional for WebAuthn support
-  Authenticator Authenticator[]
+  // Authenticator Authenticator[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -112,17 +115,17 @@ model PasswordResetToken {
 }
 
 // Optional for WebAuthn support
-model Authenticator {
-  credentialID         String  @unique
-  userId               String
-  providerAccountId    String
-  credentialPublicKey  String
-  counter              Int
-  credentialDeviceType String
-  credentialBackedUp   Boolean
-  transports           String?
+// model Authenticator {
+//   credentialID         String  @unique
+//   userId               String
+//   providerAccountId    String
+//   credentialPublicKey  String
+//   counter              Int
+//   credentialDeviceType String
+//   credentialBackedUp   Boolean
+//   transports           String?
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@id([userId, credentialID])
-}
+//   @@id([userId, credentialID])
+// }

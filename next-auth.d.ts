@@ -4,6 +4,7 @@ import NextAuth, { DefaultSession } from "next-auth"
 
 export type AppUser = {
   id: string;
+  isGuest: boolean;
   earliest?: number;
   latest?: number;
 } & DefaultSession["user"];

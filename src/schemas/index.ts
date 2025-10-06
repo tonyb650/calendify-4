@@ -2,9 +2,18 @@ import { DEFAULT_EARLIEST_TIME, DEFAULT_LATEST_TIME } from "@/constants";
 import z from "zod";
 
 export const LoginSchema = z.object({
+  guestId: z.string().optional(),
   email: z.email({message: "Email is required"}),
-  password: z.string().min(1, {message: "Password is required"}),
-})
+  password: z.string().optional(),
+}).refine((data) => {
+  if (!data.guestId) {
+    return !!data.password;
+  }
+  return true;
+}, {
+  message: "Password is required",
+  path: ["password"], 
+});
 
 // ! Add password strength validation
 // TODO here

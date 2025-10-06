@@ -11,6 +11,11 @@ export const publicRoutes: string[] = [
   "/auth/new-verification",
 ]
 
+// ! May not be a workable idea...
+export const guestRoutes: string[] = [
+  "/",
+  "/calendar",
+]
 
 /**
  * An array of routes that are used for authentication

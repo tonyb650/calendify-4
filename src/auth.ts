@@ -28,7 +28,7 @@ const edgeConfig: NextAuthConfig = {
       }
       const existingUser = await getUserById(user.id)
       // TODO only return false if Grace Period is expired
-      if (!existingUser?.emailVerified) {
+      if (!existingUser?.emailVerified && !existingUser?.isGuest) {
         return false
       }
       // TODO Add 2FA check
@@ -38,6 +38,7 @@ const edgeConfig: NextAuthConfig = {
     async jwt({token}) {
       const existingUser = await getUserById(token.sub)
       if (!existingUser) return token
+      token.isGuest = existingUser.isGuest
       token.earliest = existingUser.earliest
       token.latest = existingUser.latest
       return token
@@ -45,6 +46,7 @@ const edgeConfig: NextAuthConfig = {
     async session({ token, session}) {
       if (!session.user) return session
       if (token.sub) session.user.id = token.sub
+      if (token.isGuest) session.user.isGuest = token.isGuest as boolean
       if (token.earliest) session.user.earliest = token.earliest as number
       if (token.earliest ) session.user.latest = token.latest as number
       return session

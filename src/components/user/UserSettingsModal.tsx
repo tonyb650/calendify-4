@@ -3,6 +3,7 @@ import { SetStateAction } from "react";
 import Modal from "../Modal";
 import UserAvatar from "./UserAvatar";
 import UserSettingsForm from "./UserSettingsForm";
+import GuestModeWarning from "@/app/(protected)/_components/GuestModeWarning";
 
 type UserSettingsModalProps = {
   isOpen: boolean;
@@ -25,8 +26,14 @@ const UserSettingsModal = ({
       }
       description={
         <span className="text-slate-700">
-          <span className="font-bold">{user?.name} ({user?.earliest} {user?.latest})</span><br />
-          <span className="">{user?.email}</span><br />
+          {user?.isGuest ?
+            <GuestModeWarning/>
+          :
+            <>
+              <span className="font-bold">{user?.name} ({user?.earliest} {user?.latest})</span><br />
+              <span className="">{user?.email}</span><br />
+            </>
+          }
         </span>
       }
       isOpen={isOpen}
