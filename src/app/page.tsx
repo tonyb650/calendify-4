@@ -1,6 +1,6 @@
 // import prisma from "../../lib/prisma";
 import LoginButton from "@/components/auth/LoginButton";
-import DotCard from "@/components/landing/dotCard";
+import DotCard from "@/components/landing/DotCard";
 import IconBlock from "@/components/landing/IconBlock";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
