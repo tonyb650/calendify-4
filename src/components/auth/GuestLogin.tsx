@@ -37,7 +37,7 @@ const GuestLogin = () => {
         onClick={handleGuestLogin}
         disabled={isPending}
       >
-        { isPending ? "Setting up guest account..." : "Try out as guest"}
+        { isPending ? "Setting up guest account..." : "Demo Calendify as guest"}
       </Button>
     </div>
   );
