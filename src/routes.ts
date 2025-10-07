@@ -9,6 +9,7 @@
 export const publicRoutes: string[] = [
   "/",
   "/auth/new-verification",
+  "/api/cron",
 ]
 
 // ! May not be a workable idea...

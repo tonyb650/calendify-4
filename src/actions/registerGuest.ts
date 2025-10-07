@@ -11,6 +11,7 @@ export const registerGuest = async () => {
     const guestUser = await prisma.user.create({
       data: {
         email: guestEmail,
+        name: "temp guest",
         isGuest: true
       }
     });
