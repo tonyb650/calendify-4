@@ -1,9 +1,11 @@
-// import prisma from "../../lib/prisma";
 import LoginButton from "@/components/auth/LoginButton";
+import ApptFolderArt from "@/components/landing/ApptFolderArt";
 import DotCard from "@/components/landing/DotCard";
+import Icon from "@/components/landing/Icon";
 import IconBlock from "@/components/landing/IconBlock";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
 
 export default function Home() {
   // async function createTodo(formData: FormData) {
@@ -23,13 +25,19 @@ export default function Home() {
       )}
     >
       <div className="w-full max-w-7xl mx-3 sm:mx-6 md:mx-12">
-        <nav className="h-12 flex justify-end items-center">
+        <nav className="h-12 flex justify-between items-center mx-3">
+          <div className="text-white text-4xl font-zain flex items-center gap-3 mt-0.5">
+            <Icon className="mb-1.5" /> Calendify
+          </div>
           <LoginButton mode="redirect">
-            <Button>Sign In</Button>
+            <Button variant="secondary" className="bg-white">
+              Sign In
+            </Button>
           </LoginButton>
         </nav>
-        <DotCard>
-          <div className="space-y-4 text-gray-900 flex flex-col align-center items-center">
+        <DotCard className="relative overflow-clip">
+          <ApptFolderArt className="hidden sm:block sm:absolute -right-20 top-10 sm:-rotate-12" />
+          <div className="space-y-4 text-gray-900 flex flex-col align-center items-center ">
             <IconBlock />
             <h1 className="text-5xl mt-6 mb-12 text-center">
               A smarter way to plan your day
@@ -48,11 +56,3 @@ export default function Home() {
   );
 }
 
-// <form
-//   action={createTodo}
-//   >
-//   {/* <-- action prop in HTML lets you pass the URL you want to go to, */}
-//   {/*	for example "/new/todo", but NextJS we can call a function that will run on the server (Next makes a fetch request) */}
-//   <input type="text" name="title" id="title"/>
-//   <button>Submit</button>
-// </form>
