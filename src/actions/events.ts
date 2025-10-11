@@ -2,7 +2,7 @@
 
 import { createEvent, deleteEvent, EventWithParts, updateEvent } from "@/db/events";
 import { createPart, deletePart, updatePart } from "@/db/parts";
-import type { Event } from "@/generated/prisma";
+import { EventColor, type Event } from "@/generated/prisma";
 import { generateDateObject, getEndTime } from "@/lib/dateUtils";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -18,6 +18,7 @@ type EventActionResponse = {
 
 const createEventSchema = z.object({
   title: z.string().max(255, "Title too long").min(2, "Title too short"),
+  color: z.enum(EventColor).default("White"),
   startDate: z.string().regex(/^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/, "Date must be in YYYY-MM-DD format"),
   startTime: z.string().regex(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/, "Time must be in HH:mm format (e.g., 17:30)").optional(),
   endTime: z.string().regex(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/, "Time must be in HH:mm format (e.g., 17:30)").optional(),
@@ -44,6 +45,7 @@ export async function createEventAction(prevState: EventActionResponse, formData
 
   const {success, data, error} = createEventSchema.safeParse({
     title: formData.get("title"),
+    color: formData.get("color"),
     startDate: formData.get("startDate"),
     startTime: formData.get("startTime") || undefined,
     endTime: formData.get("endTime") || undefined,
@@ -74,6 +76,7 @@ export async function createEventAction(prevState: EventActionResponse, formData
   
     const event: EventWithParts = await createEvent({
       title: data.title, 
+      color: data.color,
       isAppointment: data.isAppointment, // will always be true
       isBreakable: data.isBreakable,     // should always be false
     })
@@ -154,6 +157,7 @@ export async function updateEventAction(prevState: EventActionResponse, formData
   const {success, data, error} = updateEventSchema.safeParse({
     id: prevState.data?.id,
     title: formData.get("title"),
+    color: formData.get('color'),
     startDate: formData.get("startDate"),
     startTime: formData.get("startTime") || undefined,
     endTime: formData.get("endTime") || undefined,
@@ -186,6 +190,7 @@ export async function updateEventAction(prevState: EventActionResponse, formData
     const event: EventWithParts = await updateEvent({
       id: data.id,
       title: data.title, 
+      color: data.color, 
       isAppointment: true,
       isBreakable: false,
     })

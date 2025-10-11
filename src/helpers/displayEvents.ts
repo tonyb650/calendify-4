@@ -2,16 +2,19 @@ import { EventWithParts } from "@/db/events";
 
 // TODO: Does FullCalendar have a built-in type for this?
 // Yes, I think so:
-// import { EventInput } from "@fullcalendar/core";
+import { EventInput as FullCalendarEvent } from "@fullcalendar/core";
 // https://github.com/fullcalendar/fullcalendar-examples/tree/main/react18-typescript
 
-export type FullCalendarEvent = {
-  id: string;
-  start: Date;
-  end: Date;
-  title: string;
-  color?: string;
-}
+// export type FullCalendarEvent = {
+//   id: string;
+//   start: Date;
+//   end: Date;
+//   title: string;
+//   color?: string;
+//   textColor?: string;
+//   backgroundColor?: string;
+//   borderColor?: string;
+// }
 
 export const EVENT_PART_ID_DELIMITER = "|PartID:";
 
@@ -29,7 +32,12 @@ export default function displayEvents(events: EventWithParts[]): FullCalendarEve
         start: part.start,
         end: part.end,
         title: event.title,
-        color: event.isAppointment ? "green" : "blue",
+        // color: "blue",
+        textColor: "black",
+        // color: event.color,
+        borderColor: event.isAppointment ? event.color : "green",
+        backgroundColor: event.color,
+        display: "block",
       });
     }
   }

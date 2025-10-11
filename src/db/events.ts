@@ -33,6 +33,7 @@ export async function getEvents(): Promise<EventWithParts[]> {
 
 export async function createEvent({
   title,
+  color,
   isAppointment,
   isBreakable
 }: CreateEvent): Promise<EventWithParts> {
@@ -49,6 +50,7 @@ export async function createEvent({
     data: {
       userId: session?.user?.id,
       title,
+      color,
       isAppointment,
       isBreakable
     },
@@ -63,6 +65,7 @@ export async function createEvent({
 export async function updateEvent({
   id,
   title,
+  color,
   isAppointment,
   isBreakable
 }: UpdateEvent): Promise<EventWithParts> {
@@ -79,6 +82,7 @@ export async function updateEvent({
     where: { id: id, userId: session.user.id},
     data: {
       title,
+      color,
       isAppointment,
       isBreakable, 
     },

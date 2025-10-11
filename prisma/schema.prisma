@@ -19,6 +19,7 @@ datasource db {
 model Event {
   id            String   @id @default(uuid())
   title         String   @db.VarChar(255)
+  color         EventColor @default(White)
   isAppointment Boolean  @default(false)
   isBreakable   Boolean  @default(false)
   userId        String
@@ -29,6 +30,14 @@ model Event {
   // isGuest       Boolean? @default(false) <-- likely it's not needed
 
   @@index([userId])
+}
+
+enum EventColor  {
+  White
+  LightSkyBlue
+  PaleGreen
+  MistyRose
+  Salmon
 }
 
 model Part {
