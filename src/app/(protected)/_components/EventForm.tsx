@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Field, FieldLabel, FieldSet } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { EventWithParts } from "@/db/events";
 import { EventColor } from "@/generated/prisma";
 import combinedDuration from "@/helpers/combinedDuration";
@@ -15,6 +14,7 @@ import {
   getEndTime,
   getNextHourStart
 } from "@/lib/dateUtils";
+import { cn } from "@/lib/utils";
 import { useActionState, useEffect, useState } from "react";
 
 //! move to user preferences
@@ -78,8 +78,6 @@ export default function EventForm({
             defaultValue={event?.title}
           />
         </Field>
-
-
 
         <Field orientation="horizontal">
           <Checkbox
@@ -151,25 +149,28 @@ export default function EventForm({
             </Field>
           </>
         )}
-        {/* Replace this with "choice chips" */}
-        <Field>
-          <Select name="color" defaultValue={event?.color || "White"}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select a color" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Color</SelectLabel>
-                {Object.values(EventColor).map((color, i) => (
-                  <SelectItem key={i} value={color}>
-                    <span className={ color !== "White" ? `text-[${color}]`:""}>{color}</span>
-                    </SelectItem>
-                  
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+        <Field orientation="horizontal" >
+          {Object.values(EventColor).map((color, i) => (
+            <FieldLabel key={i} className={cn(" cursor-pointer ")}>
+              <Input
+                type="radio"
+                name="color"
+                value={color}
+                className="peer sr-only"
+                defaultChecked={color === event?.color || color === "White"}
+                aria-label={`${color} color`}
+              />
+              <span
+                className={cn(
+                  "px-4 py-1.5 rounded-full border border-gray-300 w-14 h-5",
+                  " peer-checked:border-2 peer-checked:scale-125 peer-checked:border-gray-600 transition-all duration-200"
+                )}
+                style={{ background: `${color}` }}
+              ></span>
+            </FieldLabel>
+          ))}
         </Field>
+
         <Button variant="default">
           {isPending ? "Submitting..." : "Submit"}
         </Button>

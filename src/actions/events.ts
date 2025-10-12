@@ -153,7 +153,7 @@ export async function createEventAction(prevState: EventActionResponse, formData
 /****** UPDATE Event Action ******/
 /*********************************/
 export async function updateEventAction(prevState: EventActionResponse, formData: FormData): Promise<EventActionResponse> {
-  
+  // console.log(formData)
   const {success, data, error} = updateEventSchema.safeParse({
     id: prevState.data?.id,
     title: formData.get("title"),
@@ -169,10 +169,10 @@ export async function updateEventAction(prevState: EventActionResponse, formData
   if (!success) {
     console.log(error?.flatten().fieldErrors)
     return {error: error?.flatten().fieldErrors}
-    }
+  }
     
 
-    if (data.isAppointment === true) {
+  if (data.isAppointment === true) {
     /* UPDATE an APPOINTMENT (not auto-scheduled) */
     /* REQUIRED: a startTime and endTime. NOT REQUIRED: duration or isBreakable value */
   
@@ -186,6 +186,8 @@ export async function updateEventAction(prevState: EventActionResponse, formData
 
     const start = generateDateObject(data.startDate, data.startTime)
     const end = generateDateObject(data.startDate, data.endTime)
+
+    // console.log(data.color)
 
     const event: EventWithParts = await updateEvent({
       id: data.id,
@@ -239,7 +241,8 @@ export async function updateEventAction(prevState: EventActionResponse, formData
   
     const event: EventWithParts = await updateEvent({
       id: data.id,
-      title: data.title, 
+      title: data.title,
+      color: data.color, 
       isAppointment: false, 
       isBreakable: data.isBreakable, 
     })
