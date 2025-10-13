@@ -3,6 +3,7 @@ import ApptFolderArt from "@/components/landing/ApptFolderArt";
 import DotCard from "@/components/landing/DotCard";
 import Icon from "@/components/landing/Icon";
 import IconBlock from "@/components/landing/IconBlock";
+import TaskFolderArt from "@/components/landing/TaskFolderArt";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -37,6 +38,7 @@ export default function Home() {
         </nav>
         <DotCard className="relative overflow-clip">
           <ApptFolderArt className="hidden sm:block sm:absolute -right-20 top-10 sm:-rotate-12" />
+          <TaskFolderArt className="hidden sm:block sm:absolute sm:-left-20 lg:left-20 -bottom-24 sm:rotate-[8deg]" />
           <div className="space-y-4 text-gray-900 flex flex-col align-center items-center ">
             <IconBlock />
             <h1 className="text-5xl mt-6 mb-12 text-center">
