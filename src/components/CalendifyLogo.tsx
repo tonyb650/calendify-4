@@ -1,9 +1,16 @@
 import React from "react";
+import Icon from "./landing/Icon";
+import { cn } from "@/lib/utils";
 
-const CalendifyLogo = () => {
+const CalendifyLogo = ({ className }: { className?: string }) => {
   return (
-    <div className="flex items-center gap-x-2 bg-black/10 px-3 pt-2 rounded-lg shadow-sm shadow-black/50 cursor-default">
-      <span className="text-3xl font-semibold font-zain"> 📆 Calendify</span>
+    <div
+      className={cn(
+        "text-4xl font-semibold font-zain flex items-center gap-3 mt-0.5",
+        className
+      )}
+    >
+      <Icon className="mb-1.5" /> Calendify
     </div>
   );
 };

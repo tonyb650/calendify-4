@@ -1,4 +1,5 @@
 import LoginButton from "@/components/auth/LoginButton";
+import CalendifyLogo from "@/components/CalendifyLogo";
 import ApptFolderArt from "@/components/landing/ApptFolderArt";
 import DotCard from "@/components/landing/DotCard";
 import Icon from "@/components/landing/Icon";
@@ -6,7 +7,6 @@ import IconBlock from "@/components/landing/IconBlock";
 import TaskFolderArt from "@/components/landing/TaskFolderArt";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
 
 export default function Home() {
   // async function createTodo(formData: FormData) {
@@ -27,9 +27,7 @@ export default function Home() {
     >
       <div className="w-full max-w-7xl mx-3 sm:mx-6 md:mx-12">
         <nav className="h-12 flex justify-between items-center mx-3">
-          <div className="text-white text-4xl font-zain flex items-center gap-3 mt-0.5">
-            <Icon className="mb-1.5" /> Calendify
-          </div>
+          <CalendifyLogo className="text-white" />
           <LoginButton mode="redirect">
             <Button variant="secondary" className="bg-white">
               Sign In
@@ -57,4 +55,3 @@ export default function Home() {
     </main>
   );
 }
-

@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import CalendifyLogo from "../CalendifyLogo";
 
 type HeaderProps = {
   label: string;
@@ -6,10 +7,8 @@ type HeaderProps = {
 
 const Header = ({ label }: HeaderProps) => {
   return (
-    <div
-      className={"w-full flex flex-col gap-y-4 items-center justify-between"}
-    >
-      <h1 className={cn("text-5xl font-zain")}>📆 Calendify</h1>
+    <div className={"w-full flex flex-col gap-y-4 items-center justify-between"}>
+      <CalendifyLogo className="text-[#0964cf]" />
       <p className="text-muted-foreground text-sm">{label}</p>
     </div>
   );
