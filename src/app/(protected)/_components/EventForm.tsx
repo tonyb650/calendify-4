@@ -1,36 +1,38 @@
-"use client";
+'use client'
 
-import { createEventAction, updateEventAction } from "@/actions/events";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Field, FieldLabel, FieldSet } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { EventWithParts } from "@/db/events";
-import { EventColor } from "@/generated/prisma";
-import combinedDuration from "@/helpers/combinedDuration";
+import { createEventAction, updateEventAction } from '@/actions/events'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Field, FieldError, FieldLabel, FieldSet } from '@/components/ui/field'
+import { Input } from '@/components/ui/input'
+import { EventWithParts } from '@/db/events'
+import { EventColor } from '@/generated/prisma'
+import combinedDuration from '@/helpers/combinedDuration'
 import {
   formatDate,
   formatTime,
   getEndTime,
-  getNextHourStart
-} from "@/lib/dateUtils";
-import { cn } from "@/lib/utils";
-import { useActionState, useEffect, useState } from "react";
+  getNextHourStart,
+} from '@/lib/dateUtils'
+import { cn } from '@/lib/utils'
+import { useActionState, useEffect, useState } from 'react'
 
 //! move to user preferences
-const USER_PREFERENCE_DEFAULT_APPOINTMENT_DURATION = 30; // default to 30 minutes if no duration is provided
+const USER_PREFERENCE_DEFAULT_APPOINTMENT_DURATION = 30 // default to 30 minutes if no duration is provided
 
 type EventFormProps = {
-  onSuccess: () => void;
-  event?: EventWithParts;
-  defaultDate?: Date;
-};
+  onSuccess: () => void
+  onCancel: () => void
+  event?: EventWithParts
+  defaultDate?: Date
+}
 
 /* event will be passed in when Updating but not when Creating */
 export default function EventForm({
   event,
   defaultDate,
-  onSuccess
+  onSuccess,
+  onCancel,
 }: EventFormProps) {
   /* useActionState has three parameters
     1) our function that will be called by the returned formAction function
@@ -39,31 +41,31 @@ export default function EventForm({
   */
   const [response, formAction, isPending] = useActionState(
     event ? updateEventAction : createEventAction,
-    { data: event }
-  );
+    { data: event },
+  )
   // TODO: Will need to make StartTime & EndTime controlled because EndTime should be automatically shifted later (or earlier) when startTime is changed
   const [autoSchedule, setAutoSchedule] = useState(
-    event ? !event.isAppointment : true
-  );
+    event ? !event.isAppointment : true,
+  )
 
   // console.log(event, "EventForm event prop");
 
   useEffect(() => {
     if (response.success) {
-      onSuccess();
+      onSuccess()
     }
-  }, [response, onSuccess]);
+  }, [response, onSuccess])
 
   const earliestPart = event?.parts?.sort(
-    (a, b) => a.start.getTime() - b.start.getTime()
-  )[0];
+    (a, b) => a.start.getTime() - b.start.getTime(),
+  )[0]
   const startDate = earliestPart?.start
     ? new Date(earliestPart.start)
-    : defaultDate || getNextHourStart(new Date());
+    : defaultDate || getNextHourStart(new Date())
   const duration: number | undefined =
     combinedDuration(event?.parts) ||
-    USER_PREFERENCE_DEFAULT_APPOINTMENT_DURATION;
-  const endTime = formatTime(getEndTime(startDate, duration));
+    USER_PREFERENCE_DEFAULT_APPOINTMENT_DURATION
+  const endTime = formatTime(getEndTime(startDate, duration))
 
   return (
     <form action={formAction} className="form">
@@ -91,7 +93,7 @@ export default function EventForm({
 
         <Field>
           <FieldLabel htmlFor="startDate">
-            {autoSchedule && "Start"} Date
+            {autoSchedule && 'Start'} Date
           </FieldLabel>
           <Input
             required
@@ -149,32 +151,36 @@ export default function EventForm({
             </Field>
           </>
         )}
-        <Field orientation="horizontal" >
+        <Field orientation="horizontal">
           {Object.values(EventColor).map((color, i) => (
-            <FieldLabel key={i} className={cn(" cursor-pointer ")}>
+            <FieldLabel key={i} className={cn(' cursor-pointer ')}>
               <Input
                 type="radio"
                 name="color"
                 value={color}
                 className="peer sr-only"
-                defaultChecked={color === event?.color || color === "White"}
+                defaultChecked={color === event?.color || color === 'White'}
                 aria-label={`${color} color`}
               />
               <span
                 className={cn(
-                  "px-4 py-1.5 rounded-full border border-gray-300 w-14 h-5",
-                  " peer-checked:border-2 peer-checked:scale-125 peer-checked:border-gray-600 transition-all duration-200"
+                  'px-4 py-1.5 rounded-full border border-gray-300 w-14 h-5',
+                  ' peer-checked:border-2 peer-checked:scale-125 peer-checked:border-gray-600 transition-all duration-200',
                 )}
                 style={{ background: `${color}` }}
               ></span>
             </FieldLabel>
           ))}
         </Field>
-
-        <Button variant="default">
-          {isPending ? "Submitting..." : "Submit"}
-        </Button>
+        <div className="flex justify-end gap-4">
+          <Button type="button" variant="outline" onClick={onCancel}>
+            Cancel
+          </Button>
+          <Button variant="default">
+            {isPending ? 'Submitting...' : 'Submit'}
+          </Button>
+        </div>
       </FieldSet>
     </form>
-  );
+  )
 }

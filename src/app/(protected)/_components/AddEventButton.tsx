@@ -1,10 +1,9 @@
-"use client"
+'use client'
 
-import Modal from "@/components/Modal"
-import { useState } from "react"
-import { RiAddLine } from "react-icons/ri"
-import EventForm from "./EventForm"
-
+import Modal from '@/components/Modal'
+import { useState } from 'react'
+import { RiAddLine } from 'react-icons/ri'
+import EventForm from './EventForm'
 
 export default function AddEventButton() {
   const [isOpen, setIsOpen] = useState(false)
@@ -20,8 +19,12 @@ export default function AddEventButton() {
         <RiAddLine className="w-5 h-5 transition delay-50 duration-300 hover:rotate-90" />
       </button>
       <Modal title="New Event" isOpen={isOpen} setIsOpen={setIsOpen}>
-        <EventForm defaultDate={new Date()} onSuccess={onClose} />
+        <EventForm
+          defaultDate={new Date()}
+          onSuccess={onClose}
+          onCancel={onClose}
+        />
       </Modal>
     </>
-  );
+  )
 }

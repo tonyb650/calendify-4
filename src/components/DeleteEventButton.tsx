@@ -1,29 +1,31 @@
-import { deleteEventAction } from "@/actions/events";
-import { Event } from "@/generated/prisma";
-import { useActionState, useEffect, useState } from "react";
-import { RiDeleteBin5Line } from "react-icons/ri";
-import { Button } from "./ui/button";
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { deleteEventAction } from '@/actions/events'
+import { Event } from '@/generated/prisma'
+import { useActionState, useEffect, useState } from 'react'
+import { RiDeleteBin5Line } from 'react-icons/ri'
+import { Button } from './ui/button'
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from './ui/dialog'
 
 // TODO Improve styling!
 
 export function DeleteEventButton({
   event,
-  onSuccess
+  onSuccess,
 }: {
-  event: Event;
-  onSuccess: () => void;
+  event?: Event
+  onSuccess: () => void
 }) {
-  const [confirmIsOpen, setConfirmIsOpen] = useState(false);
+  const [confirmIsOpen, setConfirmIsOpen] = useState(false)
   const [response, formAction, isPending] = useActionState(deleteEventAction, {
-    data: event
-  });
+    data: event,
+  })
 
   useEffect(() => {
     if (response.success) {
-      onSuccess();
+      onSuccess()
     }
-  }, [response, onSuccess]);
+  }, [response, onSuccess])
+
+  if (!event) return null
 
   return (
     <Dialog open={confirmIsOpen} onOpenChange={setConfirmIsOpen}>
@@ -46,11 +48,10 @@ export function DeleteEventButton({
             Cancel
           </Button>
           <Button variant="destructive">
-            {isPending ? "Deleting..." : "Confirm"}
+            {isPending ? 'Deleting...' : 'Confirm'}
           </Button>
         </form>
-
       </DialogContent>
     </Dialog>
-  );
+  )
 }
