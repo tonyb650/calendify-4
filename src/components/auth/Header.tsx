@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import CalendifyLogo from "../CalendifyLogo";
 
 type HeaderProps = {

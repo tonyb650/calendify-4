@@ -2,7 +2,6 @@ import LoginButton from "@/components/auth/LoginButton";
 import CalendifyLogo from "@/components/CalendifyLogo";
 import ApptFolderArt from "@/components/landing/ApptFolderArt";
 import DotCard from "@/components/landing/DotCard";
-import Icon from "@/components/landing/Icon";
 import IconBlock from "@/components/landing/IconBlock";
 import TaskFolderArt from "@/components/landing/TaskFolderArt";
 import { Button } from "@/components/ui/button";

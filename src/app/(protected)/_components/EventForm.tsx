@@ -3,7 +3,7 @@
 import { createEventAction, updateEventAction } from '@/actions/events'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Field, FieldError, FieldLabel, FieldSet } from '@/components/ui/field'
+import { Field, FieldLabel, FieldSet } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { EventWithParts } from '@/db/events'
 import { EventColor } from '@/generated/prisma'
