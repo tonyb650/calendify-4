@@ -78,7 +78,8 @@ export default function Calendar({ events }: { events: EventWithParts[] }) {
 
   /* Maybe inline this function */
   function handleDateClick(dateClick: DateClickArg) {
-    setSelectedDate(getNextHourStart(dateClick.date, true))
+    const startDate =  dateClick.allDay ? getNextHourStart(dateClick.date, true) : dateClick.date 
+    setSelectedDate(startDate)
   }
 
   if (!viewType) return null
