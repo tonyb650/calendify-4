@@ -85,7 +85,6 @@ export default function Calendar({ events }: { events: EventWithParts[] }) {
 
   return (
     <>
-      <button onClick={() => setEditIsOpen((prev) => !prev)}>click</button>
       <FullCalendar
         plugins={[interaction, dayGridPlugin, timeGridPlugin, listPlugin]}
         initialView={viewType}
