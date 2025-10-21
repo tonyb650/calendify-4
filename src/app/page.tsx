@@ -1,11 +1,12 @@
-import LoginButton from "@/components/auth/LoginButton";
-import CalendifyLogo from "@/components/CalendifyLogo";
-import ApptFolderArt from "@/components/landing/ApptFolderArt";
-import DotCard from "@/components/landing/DotCard";
-import IconBlock from "@/components/landing/IconBlock";
-import TaskFolderArt from "@/components/landing/TaskFolderArt";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import LoginButton from '@/components/auth/LoginButton'
+import CalendifyLogo from '@/components/CalendifyLogo'
+import ApptFolderArt from '@/components/landing/ApptFolderArt'
+import DotCard from '@/components/landing/DotCard'
+import IconBlock from '@/components/landing/IconBlock'
+import TaskFolderArt from '@/components/landing/TaskFolderArt'
+import Typewriter from '@/components/landing/TypeWriter'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 export default function Home() {
   // async function createTodo(formData: FormData) {
@@ -20,8 +21,8 @@ export default function Home() {
   return (
     <main
       className={cn(
-        "h-full flex justify-center",
-        "bg-radial-[at_50%_00%] from-sky-400 to-blue-800"
+        'h-full flex justify-center',
+        'bg-radial-[at_50%_00%] from-sky-400 to-blue-800',
       )}
     >
       <div className="w-full max-w-7xl mx-3 sm:mx-6 md:mx-12">
@@ -38,12 +39,11 @@ export default function Home() {
           <TaskFolderArt className="hidden sm:block sm:absolute sm:-left-20 lg:left-20 -bottom-24 sm:rotate-[8deg]" />
           <div className="space-y-4 text-gray-900 flex flex-col align-center items-center ">
             <IconBlock />
-            <h1 className="text-5xl mt-6 mb-12 text-center">
-              A smarter way to plan your day
-            </h1>
-            <h2 className={cn("text-7xl drop-shadow-md font-zain")}>
-              Calendify
-            </h2>
+            <Typewriter
+              text="A smarter way to plan your day||||||<<<week||||||<<<<month!"
+              className="text-5xl mx-2 mt-6 mb-12 text-center lg:h-12"
+            />
+            <h2 className={cn('text-7xl font-zain')}>Calendify</h2>
             <p className="text-lg">AI Powered Calendar Manager</p>
             <LoginButton mode="redirect">
               <Button>Sign In</Button>
@@ -52,5 +52,5 @@ export default function Home() {
         </DotCard>
       </div>
     </main>
-  );
+  )
 }

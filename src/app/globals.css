@@ -188,68 +188,18 @@ body,
   font-size: 1rem;
 }
 
-/*
-.btn:disabled {
-  background: hsl(200, 10%, 50%);
-  color: hsl(200, 10%, 95%);
-  cursor: not-allowed;
+.pulse {
+  animation: pulse-animation 1s infinite;
 }
 
-.btn-outline {
-  background: none;
-  color: hsl(200, 100%, 25%);
-  border: 2px solid hsl(200, 100%, 25%);
+@keyframes pulse-animation {
+  0% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
-
-.btn-outline:hover,
-.btn-outline:focus {
-  background: hsl(200, 50%, 90%);
-}
-
-.btn-outline:disabled {
-  border-color: hsl(200, 10%, 50%);
-  color: hsl(200, 10%, 50%);
-  background: hsl(200, 10%, 90%);
-  cursor: not-allowed;
-}
-
-.btn-outline.btn-danger {
-  border-color: hsl(0, 100%, 30%);
-  color: hsl(0, 100%, 30%);
-}
-
-.btn-outline.btn-danger:hover,
-.btn-outline.btn-danger:focus {
-  background: hsl(0, 100%, 95%);
-}
-
-.btn-outline.btn-danger:disabled {
-  border-color: hsl(0, 10%, 50%);
-  color: hsl(0, 10%, 50%);
-  background: hsl(0, 10%, 90%);
-}
-
-.page-title .title-btns {
-  font-size: 1.5rem;
-  font-weight: normal;
-  display: flex;
-  gap: 1rem;
-}
-
-.btn {
-  text-decoration: none;
-  color: hsl(200, 20%, 95%);
-  background: hsl(200, 100%, 25%);
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  border: none;
-  font-size: inherit;
-  font-family: inherit;
-  cursor: pointer;
-}
-
-.btn:hover,
-.btn:focus {
-  background: hsl(200, 100%, 35%);
-}
-*/
