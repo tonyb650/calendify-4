@@ -31,10 +31,10 @@ const Typewriter = ({ text, delay = 100, className }: TypewriterProps) => {
 
       return () => clearTimeout(timeout)
     }
-  }, [textPosition, delay, text.length])
+  }, [textPosition, delay, text])
 
   return (
-    <div role="heading" aria-label={label} className={cn('flex', className)}>
+    <div role="heading" aria-level={1} aria-label={label} className={cn('flex', className)}>
       {visibleText}
       <div className="hidden lg:inline pulse w-1 h-[90%] mt-1 bg-foreground"></div>
     </div>
