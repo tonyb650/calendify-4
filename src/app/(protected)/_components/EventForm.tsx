@@ -68,7 +68,7 @@ export default function EventForm({
   const endTime = formatTime(getEndTime(startDate, duration))
 
   return (
-    <form action={formAction} className="form">
+    <form action={formAction} >
       <FieldSet>
         <Field>
           <FieldLabel htmlFor="title">Title</FieldLabel>
