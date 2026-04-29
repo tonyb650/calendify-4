@@ -1,6 +1,6 @@
 # Calendify
 
-Calendify is a full-stack calendar management app built with Next.js. It combines scheduling, authentication, guest access, and account preferences into one workflow, with an experimental AI-assisted time-slot prediction feature.
+Calendify is a full-stack calendar management app built with Next.js. It combines scheduling, authentication, guest access, and account preferences into one workflow, with an experimental AI-assisted time-slot prediction feature. See: [calendify-ai](https://github.com/tonyb650/calendify-ai)
 
 ## Tech Stack
 
